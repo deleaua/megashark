@@ -40,6 +40,9 @@
         </tr>
     </table>
     <div class="related">
+    <?php    foreach ($showtimes as $showtime) {
+    echo $showtime->room_id
+    } ?>
         <h4><?= __('Related Showtimes') ?></h4>
         <?php if (!empty($room->showtimes)): ?>
         <table cellpadding="0" cellspacing="0">

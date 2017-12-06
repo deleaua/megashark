@@ -37,7 +37,11 @@ class RoomsController extends AppController
         $room = $this->Rooms->get($id, [
             'contain' => []
         ]);
-        $showtimes = $this->Rooms->Showtimes->find();
+        $showtimes = $this->Rooms->Showtimes->find()
+                                            ->where(['room_id' => $id ])
+                                            ->order(['created' => 'DESC']);
+                                            
+
         $this->set('showtimes',$showtimes);
  
         $this->set('room', $room);
@@ -61,8 +65,7 @@ class RoomsController extends AppController
             }
             $this->Flash->error(__('The room could not be saved. Please, try again.'));
         }
-        $movies = $this->Rooms->Movies->find('list');
-        $this->set(compact('room','movies'));
+        $this->set(compact('room','showtimes'));
         $this->set('_serialize', ['room']);
     }
 
