@@ -35,13 +35,34 @@ class RoomsController extends AppController
     public function view($id = null)
     {
         $room = $this->Rooms->get($id, [
-            'contain' => []
+            'contain' => ['showtimes']
         ]);
+        
+        $datelundi = new \DateTime('monday this week');
+        $datedimanche = new \DateTime('sunday this week');
+        
         $showtimes = $this->Rooms->Showtimes->find()
                                             ->where(['room_id' => $id ])
-                                            ->order(['created' => 'DESC']);
+                                            ->where(['start' >= $datelundi ])
+                                            ->where(['end' <= $ $datedimanche])
+                                            ->contain(['Movies','Rooms']);
                                             
-
+        foreach($showtimes as $showtime)
+        {
+          $na = $showtime->   
+        }
+    
+        $showtimesThisWeek=[
+        1=>[],
+        2=>[],
+        3=>[],
+        4=>[],
+        5=>[],
+        6=>[],
+        7=>[]
+        
+        ];
+        
         $this->set('showtimes',$showtimes);
  
         $this->set('room', $room);

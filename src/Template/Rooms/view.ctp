@@ -40,39 +40,29 @@
         </tr>
     </table>
     <div class="related">
+    <h4><?= __('Showtimes') ?></h4>
     <?php    foreach ($showtimes as $showtime) {
-    echo $showtime->room_id
+        echo $showtime->room_id;
     } ?>
-        <h4><?= __('Related Showtimes') ?></h4>
-        <?php if (!empty($room->showtimes)): ?>
+        
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Movie Id') ?></th>
-                <th scope="col"><?= __('Room Id') ?></th>
+                <th scope="col"><?= __('Movie') ?></th>
+                <th scope="col"><?= __('Duration') ?></th>
                 <th scope="col"><?= __('Start') ?></th>
                 <th scope="col"><?= __('End') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                
+                
             </tr>
-            <?php foreach ($room->showtimes as $showtimes): ?>
+            <?php foreach ($showtimes as $showtime){ ?>
             <tr>
-                <td><?= h($showtimes->id) ?></td>
-                <td><?= h($showtimes->movie_id) ?></td>
-                <td><?= h($showtimes->room_id) ?></td>
-                <td><?= h($showtimes->start) ?></td>
-                <td><?= h($showtimes->end) ?></td>
-                <td><?= h($showtimes->created) ?></td>
-                <td><?= h($showtimes->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Showtimes', 'action' => 'view', $showtimes->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Showtimes', 'action' => 'edit', $showtimes->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Showtimes', 'action' => 'delete', $showtimes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $showtimes->id)]) ?>
-                </td>
+                <td><?= h($showtime->movie->name) ?></td>
+                <td><?= h($showtime->movie->duration) ?></td>
+                <td><?= h($showtime->start) ?></td>
+                <td><?= h($showtime->end) ?></td>
+              
             </tr>
-            <?php endforeach; ?>
+            <?php } ?>
         </table>
-        <?php endif; ?>
     </div>
 </div>
