@@ -44,14 +44,10 @@ class RoomsController extends AppController
         $showtimes = $this->Rooms->Showtimes->find()
                                             ->where(['room_id' => $id ])
                                             ->where(['start' >= $datelundi ])
-                                            ->where(['end' <= $ $datedimanche])
+                                            ->where(['end' <= $datedimanche])
                                             ->contain(['Movies','Rooms']);
-                                            
-        foreach($showtimes as $showtime)
-        {
-          $na = $showtime->   
-        }
-    
+          
+        
         $showtimesThisWeek=[
         1=>[],
         2=>[],
@@ -63,8 +59,15 @@ class RoomsController extends AppController
         
         ];
         
+        
+        foreach($showtimes as $showtime)
+        {
+          $na = $showtime->start->format('N');
+          $showtimesThisWeek[$na][]=$showtime;  
+        }
+    
         $this->set('showtimes',$showtimes);
- 
+        $this->set('array', $showtimesThisWeek);
         $this->set('room', $room);
         $this->set('_serialize', ['room']);
     }

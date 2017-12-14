@@ -41,8 +41,17 @@
     </table>
     <div class="related">
     <h4><?= __('Showtimes') ?></h4>
-    <?php    foreach ($showtimes as $showtime) {
-        echo $showtime->room_id;
+   
+   <?php for($i=1;$i<=7;$i++)
+    {
+        foreach ($showtimes as $showtime) 
+      {
+        echo '<ul>';
+        echo '<li>'.$showtime->movie->name.'</li>';
+        echo '<li>'.$showtime->movie->start.'</li>';
+        echo '<li>'.$showtime->movie->end.'</li>';
+        echo '<ul>';
+      }      
     } ?>
         
         <table cellpadding="0" cellspacing="0">
