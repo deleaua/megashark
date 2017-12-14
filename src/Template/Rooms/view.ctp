@@ -40,38 +40,29 @@
         </tr>
     </table>
     <div class="related">
-    <h4><?= __('Showtimes') ?></h4>
-   
-   <?php for($i=1;$i<=7;$i++)
-    {
-        foreach ($showtimes as $showtime) 
-      {
-        echo '<ul>';
-        echo '<li>'.$showtime->movie->name.'</li>';
-        echo '<li>'.$showtime->movie->start.'</li>';
-        echo '<li>'.$showtime->movie->end.'</li>';
-        echo '<ul>';
-      }      
-    } ?>
+        <h4><?= __('Planning showtimes') ?></h4>
         
         <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Movie') ?></th>
-                <th scope="col"><?= __('Duration') ?></th>
-                <th scope="col"><?= __('Start') ?></th>
-                <th scope="col"><?= __('End') ?></th>
-                
-                
-            </tr>
-            <?php foreach ($showtimes as $showtime){ ?>
-            <tr>
-                <td><?= h($showtime->movie->name) ?></td>
-                <td><?= h($showtime->movie->duration) ?></td>
-                <td><?= h($showtime->start) ?></td>
-                <td><?= h($showtime->end) ?></td>
-              
-            </tr>
-            <?php } ?>
+            <thread>
+                <tr>
+                    <th scope="col"><?= __('Lundi') ?></th>
+                    <th scope="col"><?= __('Mardi') ?></th>
+                    <th scope="col"><?= __('Mercredi') ?></th>
+                    <th scope="col"><?= __('Jeudi') ?></th>
+                    <th scope="col"><?= __('Vendredi') ?></th>
+                    <th scope="col"><?= __('Samedi') ?></th>
+                    <th scope="col"><?= __('Dimanche') ?></th>
+                </tr>
+            </thread>
+            <tbody>
+                 <?php for ($i = 1; $i <= 7; $i++){ ?>
+                  <tr>
+                      <td><?= $this->Number->format($showtime->id) ?></td>
+                      <td><?= h($showtime->start) ?></td>
+                      <td><?= h($showtime->end) ?></td>
+                  </tr>
+              <?php } ?>
+            </tbody>
         </table>
     </div>
 </div>
